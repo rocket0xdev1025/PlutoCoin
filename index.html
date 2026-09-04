@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlutoCoin | $PlutoCoin — Run Pluto, Vlad’s Favorite Planet</title>
+  <meta name="description" content="Now it’s PlutoCoin’s turn—run Pluto, Vlad’s favorite planet. $PlutoCoin on Robinhood Chain. Buy with Robinhood ETH." />
+  <meta name="theme-color" content="#04160f" />
+  <link rel="icon" href="logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <meta property="og:title" content="PlutoCoin | $PlutoCoin" />
+  <meta property="og:description" content="Now it’s PlutoCoin’s turn—run Pluto, Vlad’s favorite planet. Read the thesis." />
+  <meta property="og:image" content="banner.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="banner.jpg" />
+  <link rel="preload" as="image" href="banner.jpg" />
+  <link rel="preload" as="image" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Orbitron:wght@500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {T
+            void: { 950: "#02110c", 900: "#04160f", 800: "#07241a", 700: "#0c3326" },
+            nebula: { 300: "#7dffb3", 400: "#2ef38a", 500: "#12c96a", 600: "#0a8a4a" },
+            gold: {
+              100: "#fff3c4",
+              200: "#ffe38a",
+              300: "#f5d76e",
+              400: "#e8b923",
+              500: "#c99212",
+              700: "#8a6a10",
+              900: "#3d2c06",
+            },
+            pluto: { 100: "#f4ead6", 200: "#e8d5b5", 300: "#c4a882", 400: "#9c7a58" },
+          },
+          fontFamily: {
+            display: ["Orbitron", "system-ui", "sans-serif"],
+            serif: ["Cinzel", "Georgia", "serif"],
+            sans: ["Outfit", "system-ui", "sans-serif"],
+            mono: ['"Share Tech Mono"', "ui-monospace", "monospace"],
+          },
+          boxShadow: {
+            gold: "0 0 28px rgba(232,185,35,0.35)",
+            "gold-lg": "0 0 56px rgba(232,185,35,0.45)",
+            nebula: "0 0 40px rgba(46,243,138,0.22)",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root { color-scheme: dark; }
+    html, body { background: #04160f; }
+    body {
+      font-family: Outfit, system-ui, sans-serif;
+      color: #e8d5b5;
+      overflow-x: hidden;
+    }
+    ::selection { background: #e8b923; color: #04160f; }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #02110c; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(#e8b923, #8a6a10);
+      border: 2px solid #02110c;
+      border-radius: 99px;
+    }
+
+    #stars {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      pointer-events: none;
+      opacity: 0.07;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .nav-glass {
+      background: rgba(4, 22, 15, 0.28);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(232, 185, 35, 0.14);
+    }
+    .nav-glass.scrolled {
+      background: rgba(4, 22, 15, 0.92);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .coin-ring {
+      position: absolute;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 215, 110, 0.28);
+      animation: orbitSpin linear infinite;
+    }
+    .coin-ring::after {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      width: 9px;
+      height: 9px;
+      margin-left: -4.5px;
+      border-radius: 999px;
+      background: #f5d76e;
+      box-shadow: 0 0 12px 4px rgba(232, 185, 35, 0.75);
+    }
+    .coin-3d {
+      animation: coinYaw 14s linear infinite;
+      transform-style: preserve-3d;
+    }
+
+    .btn-buy {
+      background: linear-gradient(180deg, #fff3c4 0%, #f5d76e 18%, #e8b923 52%, #c99212 100%);
+      color: #2a1c04;
+      font-family: Orbitron, sans-serif;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+      box-shadow: 0 5px 0 #8a6a10, 0 14px 28px rgba(232, 185, 35, 0.32);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-buy::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
+      transform: translateX(-120%);
+      animation: shine 3.6s ease-in-out infinite;
+    }
+    .btn-buy:hover { transform: translateY(-2px); filter: brightness(1.06); }
+    .btn-buy:active { transform: translateY(3px); box-shadow: 0 1px 0 #8a6a10; }
+
+    .btn-chart {
+      background: rgba(232, 213, 181, 0.06);
+      border: 1.5px solid rgba(245, 215, 110, 0.55);
+      color: #f5d76e;
+      font-family: Orbitron, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      backdrop-filter: blur(10px);
+    }
+    .btn-chart:hover {
+      background: rgba(245, 215, 110, 0.12);
+      transform: translateY(-2px);
+      box-shadow: 0 0 24px rgba(232, 185, 35, 0.25);
+    }
+
+    .gold-frame {
+      background:
+        linear-gradient(#07241a, #07241a) padding-box,
+        linear-gradient(135deg, #fff3c4, #e8b923 35%, #8a6a10 70%, #f5d76e) border-box;
+      border: 1.5px solid transparent;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 243, 196, 0.12),
+        0 18px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .dossier {
+      background:
+        radial-gradient(800px 280px at 8% -10%, rgba(232, 185, 35, 0.12), transparent 50%),
+        linear-gradient(180deg, #0c3326 0%, #07241a 100%);
+    }
+
+    .ca-chip {
+      background: rgba(2, 17, 12, 0.72);
+      border: 1px solid rgba(245, 215, 110, 0.35);
+      box-shadow: inset 0 0 20px rgba(232, 185, 35, 0.08);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 2.4rem;
+      width: max-content;
+      animation: marquee 26s linear infinite;
+    }
+
+    .hex-fade {
+      background-image:
+        radial-gradient(circle at 50% 50%, rgba(245, 215, 110, 0.07) 1px, transparent 1.6px);
+      background-size: 22px 22px;
+    }
+
+    .orbit-line {
+      background-image: radial-gradient(circle at 50% 50%, #e8b923 1.6px, transparent 1.8px);
+      background-size: 22px 8px;
+      background-repeat: repeat-x;
+    }
+
+    #toast {
+      transform: translateX(-50%) translateY(140%);
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s;
+      opacity: 0;
+    }
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    @keyframes shine {
+      0%, 55% { transform: translateX(-120%); }
+      75%, 100% { transform: translateX(120%); }
+    }
+    @keyframes orbitSpin { to { transform: rotate(360deg); } }
+    @keyframes coinYaw {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
+    }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 18px rgba(46, 243, 138, 0.15), 0 0 40px rgba(232, 185, 35, 0.12); }
+      50% { box-shadow: 0 0 28px rgba(46, 243, 138, 0.28), 0 0 60px rgba(232, 185, 35, 0.28); }
+    }
+    .bob { animation: bob 4.2s ease-in-out infinite; }
+    .glow-pulse { animation: pulseGlow 3.4s ease-in-out infinite; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .coin-3d, .coin-ring, .marquee-track, .bob, .glow-pulse, .btn-buy::after {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="relative">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div id="toast" class="fixed bottom-24 md:bottom-8 left-1/2 z-[80] gold-frame rounded-full px-5 py-2.5 text-sm font-semibold text-gold-200">
+    <span data-toast-msg>Copied.</span>
+  </div>
+
+  <header id="nav" class="nav-glass fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <a href="#top" class="flex items-center gap-2.5 min-w-0">
+        <img src="logo.png" alt="PlutoCoin logo" class="w-10 h-10 rounded-full object-cover ring-2 ring-gold-400 shadow-gold" />
+        <span class="font-display font-extrabold tracking-wide text-gold-300 text-lg truncate">PlutoCoin</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-pluto-200/80">
+        <a href="#thesis" class="hover:text-gold-300 transition">Thesis</a>
+        <a href="#buy" class="hover:text-gold-300 transition">How to Buy</a>
+        <a href="#chart" class="hover:text-gold-300 transition">Chart</a>
+        <a href="#join" class="hover:text-gold-300 transition">Join</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href="https://t.me/DUMBMONEY_sol" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full overflow-hidden ring-1 ring-gold-400/50 hover:ring-gold-300 transition" aria-label="Telegram">
+          <img src="tg.png" alt="" class="w-full h-full object-cover" />
+        </a>
+        <a href="https://x.com/PlutoCoinX" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-full overflow-hidden bg-black ring-1 ring-gold-400/50 hover:ring-gold-300 transition p-1.5" aria-label="X / Twitter">
+          <img src="x.png" alt="" class="w-full h-full object-contain" />
+        </a>
+        <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0xe801B33366826E54d284D1120d5d6988631506Dd" target="_blank" rel="noopener noreferrer" class="btn-buy hidden sm:inline-flex items-center rounded-full px-4 py-2 text-xs">Buy Now</a>
+        <button id="menuBtn" type="button" class="md:hidden w-9 h-9 grid place-items-center rounded-full border border-gold-400/40 text-gold-300" aria-label="Open menu">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden border-t border-gold-400/15 bg-void-900/95 px-4 py-4 space-y-3">
+      <a href="#thesis" class="block py-1.5 font-semibold">Thesis</a>
+      <a href="#buy" class="block py-1.5 font-semibold">How to Buy</a>
+      <a href="#chart" class="block py-1.5 font-semibold">Chart</a>
+      <a href="#join" class="block py-1.5 font-semibold">Join</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="relative min-h-[100svh] flex items-center pt-20 pb-16 overflow-hidden">
+      <img src="banner.jpg" alt="" class="absolute inset-0 w-full h-full object-cover object-center scale-105" />
+      <div class="absolute inset-0 bg-gradient-to-b from-void-950/55 via-void-900/70 to-void-950"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(2,17,12,0.72)_100%)]"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+        <div class="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-center">
+          <div class="relative mx-auto w-[78%] max-w-[440px] lg:w-full">
+            <div class="coin-ring" style="inset:-10%; animation-duration:18s;"></div>
+            <div class="coin-ring" style="inset:-18%; animation-duration:28s; animation-direction:reverse; border-color:rgba(46,243,138,0.22);"></div>
+            <div class="coin-ring" style="inset:-26%; animation-duration:40s; border-style:dashed; opacity:.7;"></div>
+            <div class="relative bob glow-pulse rounded-full">
+              <img src="logo.png" alt="PlutoCoin — gold-rimmed Pluto" class="coin-3d relative z-10 w-full drop-shadow-[0_20px_40px_rgba(0,0,0,0.55)]" />
+            </div>
+          </div>
+
+          <div class="text-center lg:text-left">
+            <p class="inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-void-950/50 px-3 py-1 text-[11px] font-display tracking-[0.22em] uppercase text-gold-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-nebula-400 shadow-[0_0_8px_#2ef38a]"></span>
+              Robinhood Chain · $PlutoCoin
+            </p>
+            <h1 class="mt-5 font-display font-black leading-[0.9] text-5xl sm:text-6xl lg:text-7xl text-gold-200 drop-shadow-[0_4px_24px_rgba(232,185,35,0.35)]">
+              PLUTO<br />COIN
+            </h1>
+            <p class="mt-6 text-lg sm:text-xl text-pluto-100/90 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              Now it’s PlutoCoin’s turn—run Pluto, Vlad’s favorite planet.
+              <a href="#thesis" class="text-gold-300 underline decoration-gold-500/60 underline-offset-4 hover:text-gold-200">Read the thesis.</a>
+            </p>
+
+            <div class="mt-7 ca-chip rounded-2xl px-4 py-3 flex items-center gap-3 max-w-xl mx-auto lg:mx-0">
+              <span class="font-display text-[10px] tracking-[0.2em] text-gold-400 shrink-0">CA</span>
+              <code class="font-mono text-sm sm:text-base text-pluto-100 truncate flex-1" data-ca>0xe801B33366826E54d284D1120d5d6988631506Dd</code>
+              <button type="button" onclick="copyCA()" class="shrink-0 rounded-full bg-gold-400 text-void-950 font-display text-[11px] tracking-wide px-3 py-1.5 font-bold hover:bg-gold-200">
+                Copy
+              </button>
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+              <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0xe801B33366826E54d284D1120d5d6988631506Dd" target="_blank" rel="noopener noreferrer" class="btn-buy rounded-full px-8 py-3.5 text-sm sm:text-base text-center">
+                Buy Now
+              </a>
+              <a href="https://dexscreener.com/robinhood/0xe801B33366826E54d284D1120d5d6988631506Dd" target="_blank" rel="noopener noreferrer" class="btn-chart rounded-full px-8 py-3.5 text-sm sm:text-base inline-flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M4 19V5m0 14h16M8 15l3-4 3 3 5-7"/></svg>
+                Chart
+              </a>
+            </div>
+
+            <div class="mt-8 flex items-center gap-4 justify-center lg:justify-start">
+              <a href="https://t.me/DUMBMONEY_sol" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm font-semibold text-pluto-200 hover:text-gold-300">
+                <img src="tg.png" alt="" class="w-8 h-8 rounded-full object-cover ring-1 ring-gold-400/40" />
+                Telegram
+              </a>
+              <a href="https://x.com/PlutoCoinX" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm font-semibold text-pluto-200 hover:text-gold-300">
+                <img src="x.png" alt="" class="w-8 h-8 rounded-full object-contain bg-black p-1.5 ring-1 ring-gold-400/40" />
+                @PlutoCoinX
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="relative z-10 border-y border-gold-400/25 bg-void-950 overflow-hidden py-3">
+      <div class="marquee-track font-display text-xs sm:text-sm tracking-[0.28em] uppercase text-gold-300">
+        <span>Run Pluto</span><span class="text-nebula-400">✦</span>
+        <span>Vlad’s favorite planet</span><span class="text-nebula-400">✦</span>
+        <span>$PlutoCoin</span><span class="text-nebula-400">✦</span>
+        <span>The last planet</span><span class="text-nebula-400">✦</span>
+        <span>Now it’s our turn</span><span class="text-nebula-400">✦</span>
+        <span>Robinhood ETH</span><span class="text-nebula-400">✦</span>
+        <span>Run Pluto</span><span class="text-nebula-400">✦</span>
+        <span>Vlad’s favorite planet</span><span class="text-nebula-400">✦</span>
+        <span>$PlutoCoin</span><span class="text-nebula-400">✦</span>
+        <span>The last planet</span><span class="text-nebula-400">✦</span>
+        <span>Now it’s our turn</span><span class="text-nebula-400">✦</span>
+        <span>Robinhood ETH</span><span class="text-nebula-400">✦</span>
+      </div>
+    </div>
+
+    <!-- THESIS -->
+    <section id="thesis" class="relative z-10 py-20 sm:py-28 hex-fade">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-3xl mx-auto">
+          <p class="font-display text-[11px] tracking-[0.32em] uppercase text-nebula-400">Mission briefing</p>
+          <h2 class="mt-3 font-serif text-4xl sm:text-6xl text-gold-200 leading-none">Read the thesis</h2>
+          <p class="mt-5 text-lg text-pluto-200/90">
+            Now it’s PlutoCoin’s turn—run Pluto, Vlad’s favorite planet.
+          </p>
+        </div>
+
+        <article class="dossier gold-frame rounded-[2rem] mt-12 p-6 sm:p-10">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-gold-400/20 pb-5">
+            <div>
+              <p class="font-mono text-[11px] tracking-[0.22em] text-gold-400">FILE / PLUTO-01</p>
+              <h3 class="font-serif text-2xl sm:text-3xl text-gold-100 mt-1">The last planet just got a ticker</h3>
+            </div>
+            <span class="font-display text-[10px] tracking-[0.2em] uppercase rounded-full border border-gold-400/50 text-gold-300 px-3 py-1">Classified · Public</span>
+          </div>
+
+          <p class="mt-6 text-base sm:text-lg leading-relaxed text-pluto-100/90 max-w-3xl">
+            They kicked Pluto out of the solar system and the planet kept orbiting anyway.
+            Robinhood bought a company named Pluto. Vlad built a chain and said it works great for memes too.
+            The name was already sitting on the desk. We minted the coin.
+          </p>
+
+          <div class="mt-8 grid sm:grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-gold-400/20 bg-void-950/40 p-5">
+              <p class="font-display text-gold-400 text-xs tracking-[0.18em] uppercase">01 · Demoted, not dead</p>
+              <p class="mt-2 text-sm leading-relaxed text-pluto-200/85">Pluto is the underdog planet. Counted out, still spinning. That is the whole meme. That is the whole market.</p>
+            </div>
+            <div class="rounded-2xl border border-gold-400/20 bg-void-950/40 p-5">
+              <p class="font-display text-gold-400 text-xs tracking-[0.18em] uppercase">02 · Vlad already owns the name</p>
+              <p class="mt-2 text-sm leading-relaxed text-pluto-200/85">Robinhood acquired Pluto — the AI research desk. Favorite planet, favorite ticker. We just ran it on-chain.</p>
+            </div>
+            <div class="rounded-2xl border border-gold-400/20 bg-void-950/40 p-5">
+              <p class="font-display text-gold-400 text-xs tracking-[0.18em] uppercase">03 · The chain is for memes too</p>
+              <p class="mt-2 text-sm leading-relaxed text-pluto-200/85">RWAs were the pitch. Memes filled the blockspace. $PlutoCoin is the planet that belongs on those rails.</p>
+            </div>
+            <div class="rounded-2xl border border-gold-400/20 bg-void-950/40 p-5">
+              <p class="font-display text-gold-400 text-xs tracking-[0.18em] uppercase">04 · Run Pluto</p>
+              <p class="mt-2 text-sm leading-relaxed text-pluto-200/85">Name: PlutoCoin. Symbol: PlutoCoin. Chain: Robinhood. Fuel: Robinhood ETH. Now it’s our turn.</p>
+            </div>
+          </div>
+
+          <dl class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="rounded-xl bg-void-950/55 border border-gold-400/15 px-4 py-3">
+              <dt class="font-display text-[10px] tracking-[0.2em] text-gold-400 uppercase">Name</dt>
+              <dd class="font-semibold text-pluto-100 mt-1">PlutoCoin</dd>
+            </div>
+            <div class="rounded-xl bg-void-950/55 border border-gold-400/15 px-4 py-3">
+              <dt class="font-display text-[10px] tracking-[0.2em] text-gold-400 uppercase">Symbol</dt>
+              <dd class="font-semibold text-pluto-100 mt-1">$PlutoCoin</dd>
+            </div>
+            <div class="rounded-xl bg-void-950/55 border border-gold-400/15 px-4 py-3">
+              <dt class="font-display text-[10px] tracking-[0.2em] text-gold-400 uppercase">Chain</dt>
+              <dd class="font-semibold text-pluto-100 mt-1">Robinhood</dd>
+            </div>
+            <div class="rounded-xl bg-void-950/55 border border-gold-400/15 px-4 py-3">
+              <dt class="font-display text-[10px] tracking-[0.2em] text-gold-400 uppercase">CA</dt>
+              <dd class="font-mono text-pluto-100 mt-1 truncate" data-ca>0xe801B33366826E54d284D1120d5d6988631506Dd</dd>
+            </div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW TO BUY -->
+    <section id="buy" class="relative z-10 py-20 sm:py-28 bg-void-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-2xl mx-auto">
+          <p class="font-display text-[11px] tracking-[0.32em] uppercase text-nebula-400">Launch sequence</p>
+          <h2 class="mt-3 font-serif text-4xl sm:text-6xl text-gold-200 leading-none">How to Buy</h2>
+          <p class="mt-4 text-lg text-pluto-200/85">Four steps. Robinhood ETH in. $PlutoCoin out. Then run Pluto.</p>
+        </div>
+
+        <div class="relative mt-14">
+          <div class="hidden xl:block absolute top-[46%] left-[8%] right-[8%] h-2 orbit-line opacity-70"></div>
+
+          <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 relative">
+            <article class="gold-frame rounded-[1.7rem] overflow-hidden flex flex-col">
+              <div class="relative">
+                <img src="step-1.jpg" alt="Gold vault-wallet under a Pluto coin in green nebula" class="w-full aspect-square object-cover" />
+                <span class="absolute top-3 left-3 w-11 h-11 rounded-full bg-void-950 text-gold-300 font-display text-lg flex items-center justify-center ring-2 ring-gold-400">1</span>
+              </div>
+              <div class="p-5 flex-1 flex flex-col">
+                <h3 class="font-serif text-2xl text-gold-200 leading-none">Dock the wallet</h3>
+                <p class="text-[11px] font-display tracking-[0.16em] text-nebula-400 uppercase mt-2">Create a wallet</p>
+                <p class="mt-3 text-sm leading-relaxed text-pluto-200/80">
+                  Grab Robinhood Wallet (the chain is built in) or MetaMask / Rabby. Add Robinhood Chain so Pluto can find you.
+                </p>
+                <dl class="mt-4 text-[11px] font-mono bg-void-950/80 text-pluto-100 rounded-xl p-3 space-y-1 border border-gold-400/15">
+                  <div class="flex justify-between gap-2"><dt class="text-gold-400">Network</dt><dd>Robinhood Chain</dd></div>
+                  <div class="flex justify-between gap-2"><dt class="text-gold-400">Chain ID</dt><dd>4663</dd></div>
+                  <div class="flex justify-between gap-2 items-center">
+                    <dt class="text-gold-400">RPC</dt>
+                    <dd class="truncate max-w-[9.5rem]">rpc.mainnet.chain.robinhood.com</dd>
+                  </div>
+                  <div class="flex justify-between gap-2"><dt class="text-gold-400">Gas</dt><dd>ETH</dd></div>
+                </dl>
+              </div>
+            </article>
+
+            <article class="gold-frame rounded-[1.7rem] overflow-hidden flex flex-col">
+              <div class="relative">
+                <img src="step-2.jpg" alt="Green ETH crystals and molten gold around Pluto" class="w-full aspect-square object-cover" />
+                <span class="absolute top-3 left-3 w-11 h-11 rounded-full bg-void-950 text-gold-300 font-display text-lg flex items-center justify-center ring-2 ring-gold-400">2</span>
+              </div>
+              <div class="p-5 flex-1">
+                <h3 class="font-serif text-2xl text-gold-200 leading-none">Fuel with ETH</h3>
+                <p class="text-[11px] font-display tracking-[0.16em] text-nebula-400 uppercase mt-2">Get Robinhood ETH</p>
+                <p class="mt-3 text-sm leading-relaxed text-pluto-200/80">
+                  Bridge ETH onto Robinhood Chain. That is Robinhood ETH — gas for the hop and fuel for the swap. No ETH on this chain, no $PlutoCoin.
+                </p>
+                <p class="mt-4 text-xs font-semibold text-pluto-300/80">Bridge from Ethereum via Uniswap or the Arbitrum portal, then confirm the balance on Robinhood Chain.</p>
+              </div>
+            </article>
+
+            <article class="gold-frame rounded-[1.7rem] overflow-hidden flex flex-col">
+              <div class="relative">
+                <img src="step-3.jpg" alt="Gold swap arrows orbiting the Pluto coin" class="w-full aspect-square object-cover" />
+                <span class="absolute top-3 left-3 w-11 h-11 rounded-full bg-void-950 text-gold-300 font-display text-lg flex items-center justify-center ring-2 ring-gold-400">3</span>
+              </div>
+              <div class="p-5 flex-1 flex flex-col">
+                <h3 class="font-serif text-2xl text-gold-200 leading-none">Lock coordinates</h3>
+                <p class="text-[11px] font-display tracking-[0.16em] text-nebula-400 uppercase mt-2">Uniswap on Robinhood</p>
+                <p class="mt-3 text-sm leading-relaxed text-pluto-200/80">
+                  Open Uniswap, connect the wallet, switch to Robinhood Chain. Paste the $PlutoCoin contract. Never buy from ticker search alone.
+                </p>
+                <button type="button" onclick="copyCA()" class="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-void-950 text-pluto-100 px-4 py-2.5 text-sm font-bold border border-gold-400/40 hover:border-gold-300">
+                  Copy CA · <span class="font-mono text-gold-300" data-ca>0xe801B33366826E54d284D1120d5d6988631506Dd</span>
+                </button>
+              </div>
+            </article>
+
+            <article class="gold-frame rounded-[1.7rem] overflow-hidden flex flex-col">
+              <div class="relative">
+                <img src="step-4.jpg" alt="PlutoCoin launching through a green nebula with a gold trail" class="w-full aspect-square object-cover" />
+                <span class="absolute top-3 left-3 w-11 h-11 rounded-full bg-void-950 text-gold-300 font-display text-lg flex items-center justify-center ring-2 ring-gold-400">4</span>
+              </div>
+              <div class="p-5 flex-1 flex flex-col">
+                <h3 class="font-serif text-2xl text-gold-200 leading-none">Ignite &amp; run</h3>
+                <p class="text-[11px] font-display tracking-[0.16em] text-nebula-400 uppercase mt-2">Swap ETH for $PlutoCoin</p>
+                <p class="mt-3 text-sm leading-relaxed text-pluto-200/80">
+                  Swap your Robinhood ETH for $PlutoCoin. Confirm the transaction. Then run Pluto — Vlad’s favorite planet is live.
+                </p>
+                <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0xe801B33366826E54d284D1120d5d6988631506Dd" target="_blank" rel="noopener noreferrer" class="btn-buy mt-4 rounded-full px-4 py-3 text-center text-sm">Buy Now</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHART -->
+    <section id="chart" class="relative z-10 py-20 sm:py-28 hex-fade">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+          <div>
+            <p class="font-display text-[11px] tracking-[0.32em] uppercase text-nebula-400">Live orbit</p>
+            <h2 class="font-serif text-4xl sm:text-5xl text-gold-200 mt-2 leading-none">$PlutoCoin Chart</h2>
+            <p class="mt-2 text-pluto-200/80">Dexscreener on Robinhood Chain. The planet, in real time.</p>
+          </div>
+          <a href="https://dexscreener.com/robinhood/0xe801B33366826E54d284D1120d5d6988631506Dd" target="_blank" rel="noopener noreferrer" class="btn-chart rounded-full px-6 py-3 text-sm inline-flex items-center justify-center gap-2 w-fit">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M4 19V5m0 14h16M8 15l3-4 3 3 5-7"/></svg>
+            Open Chart
+          </a>
+        </div>
+
+        <div class="gold-frame rounded-[2rem] p-[10px]">
+          <div class="rounded-[1.45rem] overflow-hidden bg-void-950">
+            <iframe
+              title="Dexscreener $PlutoCoin chart"
+              src="https://dexscreener.com/robinhood/0xe801B33366826E54d284D1120d5d6988631506Dd?embed=1&loadChartSettings=0&trades=0&tabs=0&info=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"
+              class="w-full h-[460px] md:h-[640px] border-0"
+              loading="lazy"
+              allow="clipboard-write"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOIN -->
+    <section id="join" class="relative z-10 py-20 sm:py-28 overflow-hidden">
+      <img src="banner.jpg" alt="" class="absolute inset-0 w-full h-full object-cover object-center scale-105" />
+      <div class="absolute inset-0 bg-void-950/78"></div>
+      <div class="relative max-w-3xl mx-auto px-4 text-center">
+        <img src="logo.png" alt="" class="w-24 h-24 mx-auto rounded-full object-cover ring-4 ring-gold-400 shadow-gold-lg" />
+        <h2 class="font-serif text-4xl sm:text-6xl mt-6 leading-none text-gold-200">Join the orbit</h2>
+        <p class="mt-4 text-lg text-pluto-100/90">Now it’s PlutoCoin’s turn—run Pluto, Vlad’s favorite planet.</p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0xe801B33366826E54d284D1120d5d6988631506Dd" target="_blank" rel="noopener noreferrer" class="btn-buy rounded-full px-8 py-4 text-base">Buy Now</a>
+          <a href="https://t.me/DUMBMONEY_sol" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-full bg-pluto-100 text-void-950 font-display font-bold px-8 py-4 text-base hover:scale-[1.02] transition">
+            <img src="tg.png" alt="" class="w-6 h-6 rounded-full object-cover" />
+            Telegram
+          </a>
+          <a href="https://x.com/PlutoCoinX" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-full bg-black text-pluto-100 font-display font-bold px-8 py-4 text-base border border-gold-400/40 hover:scale-[1.02] transition">
+            <img src="x.png" alt="" class="w-6 h-6 object-contain" />
+            @PlutoCoinX
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="relative z-10 bg-void-950 text-pluto-300 border-t border-gold-400/25 pb-24 md:pb-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex flex-col md:flex-row gap-8 md:items-center md:justify-between">
+      <div class="flex items-center gap-3">
+        <img src="logo.png" alt="" class="w-12 h-12 rounded-full object-cover ring-2 ring-gold-400" />
+        <div>
+          <div class="font-display text-xl text-gold-200 leading-none">PlutoCoin</div>
+          <div class="text-[11px] font-display tracking-[0.2em] text-gold-400 mt-1">$PlutoCoin</div>
+        </div>
+      </div>
+      <p class="text-xs leading-relaxed max-w-xl text-pluto-300/80">
+        $PlutoCoin is a meme. Not financial advice, not a planet, not a promise from Vlad.
+        Crypto is risky. Do your own research. Run Pluto — or don’t. The last planet keeps orbiting either way.
+      </p>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="https://t.me/DUMBMONEY_sol" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full overflow-hidden ring-1 ring-gold-400/40" aria-label="Telegram">
+          <img src="tg.png" alt="" class="w-full h-full object-cover" />
+        </a>
+        <a href="https://x.com/PlutoCoinX" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full bg-black p-2 ring-1 ring-gold-400/40" aria-label="X">
+          <img src="x.png" alt="" class="w-full h-full object-contain" />
+        </a>
+      </div>
+    </div>
+    <div class="border-t border-white/10 py-4 text-center text-[11px] font-bold tracking-wide text-pluto-300/50">
+      © 2026 PlutoCoin · Run Pluto, Vlad’s favorite planet
+    </div>
+  </footer>
+
+  <div class="md:hidden fixed bottom-0 inset-x-0 z-40 p-3 bg-gradient-to-t from-void-950 via-void-950/95 to-transparent">
+    <div class="flex gap-2">
+      <button type="button" onclick="copyCA()" class="flex-1 rounded-full bg-void-800 border border-gold-400/30 text-pluto-100 font-bold py-3 text-sm">
+        Copy CA
+      </button>
+      <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0xe801B33366826E54d284D1120d5d6988631506Dd" target="_blank" rel="noopener noreferrer" class="btn-buy flex-[1.4] rounded-full py-3 text-center text-sm">Buy Now</a>
+    </div>
+  </div>
+
+  <script>
+    const CA = "0xe801B33366826E54d284D1120d5d6988631506Dd";
+
+    function toast(msg) {
+      const el = document.getElementById("toast");
+      el.querySelector("[data-toast-msg]").textContent = msg;
+      el.classList.add("show");
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => el.classList.remove("show"), 2200);
+    }
+
+    async function copyCA() {
+      try {
+        await navigator.clipboard.writeText(CA);
+        toast(CA === "0xe801B33366826E54d284D1120d5d6988631506Dd" ? "CA copied: 0xe801B33366826E54d284D1120d5d6988631506Dd — coordinates incoming." : "CA copied. Run Pluto.");
+      } catch (err) {
+        toast("Copy failed. Select the CA and copy it.");
+      }
+    }
+
+    const nav = document.getElementById("nav");
+    const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+    mobileMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => mobileMenu.classList.add("hidden")));
+
+    (function starfield() {
+      const canvas = document.getElementById("stars");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      let stars = [];
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const count = Math.min(160, Math.floor((canvas.width * canvas.height) / 14000));
+        stars = Array.from({ length: count }, () => ({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.4 + 0.3,
+          a: Math.random(),
+          s: Math.random() * 0.008 + 0.002,
+          gold: Math.random() > 0.78,
+        }));
+      }
+
+      function tick() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (const st of stars) {
+          if (!reduce) {
+            st.a += st.s;
+            if (st.a > 1 || st.a < 0) st.s *= -1;
+          }
+          ctx.globalAlpha = 0.25 + st.a * 0.75;
+          ctx.fillStyle = st.gold ? "#f5d76e" : "#7dffb3";
+          ctx.beginPath();
+          ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(tick);
+      }
+
+      resize();
+      window.addEventListener("resize", resize);
+      tick();
+    })();
+  </script>
+</body>
+</html>
